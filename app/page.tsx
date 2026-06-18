@@ -134,7 +134,29 @@ export default function Home() {
             transition={{ type: "spring", stiffness: 300 }}
           >
             <div className="icon-top-right">↗</div>
-            <div style={{ height: '100px' }}></div>
+            
+            {/* Animated Floating Shapes */}
+            <div style={{ position: 'relative', height: '150px', width: '100%', overflow: 'hidden' }}>
+              <motion.div 
+                className="floating-shape"
+                style={{ width: '40px', height: '40px', borderRadius: '50%', right: '20%', top: '20%' }}
+                animate={{ y: [0, -20, 0], x: [0, 10, 0], rotate: 360 }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.div 
+                className="floating-shape"
+                style={{ width: '30px', height: '30px', left: '20%', bottom: '20%' }}
+                animate={{ y: [0, 30, 0], rotate: [-45, 45, -45] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              />
+              <motion.div 
+                className="floating-shape"
+                style={{ width: '60px', height: '20px', borderRadius: '10px', right: '40%', bottom: '10%' }}
+                animate={{ scale: [1, 1.2, 1], rotate: [0, 180, 360] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+              />
+            </div>
+
             <div>
               <p style={{ marginBottom: '5px', fontWeight: 'bold' }}>Exploring innovation through the lens</p>
               <h3>Switches</h3>
@@ -163,6 +185,54 @@ export default function Home() {
             </motion.a>
           </motion.div>
         </motion.div>
+      </section>
+
+      <section className="philosophy-section">
+        <motion.div 
+          className="philosophy-text"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+        >
+          {["WE", "BELIEVE", "IN", "THE", "TACTILE", "SOUL", "OF", "MACHINES."].map((word, i) => (
+            <motion.span 
+              key={i} 
+              variants={fadeInUp}
+              style={{ display: 'inline-block' }}
+              whileHover={{ scale: 1.1, color: 'var(--primary)', rotate: Math.random() * 10 - 5 }}
+            >
+              {word}
+            </motion.span>
+          ))}
+        </motion.div>
+      </section>
+
+      <section className="stats-container">
+        {[
+          { num: "50+", label: "Premium Switches" },
+          { num: "10K", label: "Builds Completed" },
+          { num: "99%", label: "Tactile Satisfaction" }
+        ].map((stat, i) => (
+          <motion.div 
+            key={i}
+            className="stat-item"
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: i * 0.2, type: "spring", stiffness: 100 }}
+          >
+            <motion.div 
+              className="stat-number"
+              initial={{ scale: 0.5 }}
+              whileInView={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: i * 0.2 + 0.3 }}
+            >
+              {stat.num}
+            </motion.div>
+            <div className="stat-label">{stat.label}</div>
+          </motion.div>
+        ))}
       </section>
 
       <footer style={{ padding: '40px 4vw', display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', borderTop: '1px solid rgba(255,255,255,0.2)' }}>
