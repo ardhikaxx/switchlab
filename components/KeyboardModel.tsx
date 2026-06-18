@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useGLTF, OrbitControls, Stage, Html, Clone } from "@react-three/drei";
+import { useGLTF, OrbitControls, Stage, Html, Clone, Center } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
 function Model() {
@@ -25,12 +25,15 @@ export default function KeyboardModel() {
       <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 5, 10], fov: 45 }}>
         <React.Suspense fallback={<Loader />}>
           <Stage environment="city" intensity={0.5}>
-            <Model />
+            <Center alignTop position={[0, -1, 0]}>
+              <Model />
+            </Center>
           </Stage>
         </React.Suspense>
         <OrbitControls 
+          target={[0, 0, 0]}
           autoRotate 
-          autoRotateSpeed={1} 
+          autoRotateSpeed={0.5} 
           enablePan={false} 
           enableZoom={true} 
           minPolarAngle={Math.PI / 4} 
