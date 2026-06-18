@@ -475,7 +475,7 @@ export default function Home() {
 
       <footer style={{ padding: '40px 4vw', display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', borderTop: '1px solid rgba(255,255,255,0.2)' }}>
         <div>Thank you for watching</div>
-        <div>Design Inspired By Reference</div>
+        <div>Develop by <a href="https://www.instagram.com/ardhxkaa_/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'var(--primary)', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#fff'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--primary)'}>ardhika</a></div>
         <div>2026</div>
       </footer>
     </>
