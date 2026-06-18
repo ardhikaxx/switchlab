@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import { useGLTF, OrbitControls, Stage, Html } from "@react-three/drei";
+import { useGLTF, OrbitControls, Stage, Html, Clone } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
 function Model() {
   const { scene } = useGLTF("/assets/3d/keyboard.glb");
-  return <primitive object={scene} scale={1} />;
+  return <Clone object={scene} scale={1} />;
 }
 
 function Loader() {
@@ -40,3 +40,5 @@ export default function KeyboardModel() {
     </div>
   );
 }
+
+useGLTF.preload("/assets/3d/keyboard.glb");
