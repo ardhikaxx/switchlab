@@ -103,25 +103,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-two" style={{ paddingTop: '20px' }}>
-        <div className="section-header" style={{ marginBottom: '20px' }}>
-          <h2 className="section-title" style={{ fontSize: '3rem' }}>The Anatomy</h2>
-          <div className="hero-small-text" style={{ textAlign: 'left', maxWidth: '300px' }}>
-            Our anatomy showcases an exquisite range of components that blend innovation, precision, and style. From sleek aesthetics to vintage-inspired pieces.
-          </div>
-          <a href="#" className="btn-pill" style={{ background: 'transparent', border: '2px solid var(--text-color)', color: 'var(--text-color)' }}>
-            View All <span className="btn-icon" style={{ background: 'var(--text-color)', color: 'var(--secondary)' }}>↗</span>
-          </a>
-        </div>
 
-        <div className="gallery-box">
-          <h2>STABILIZERS</h2>
-          {/* We can re-use the 3D model here or just have a bold graphic */}
-          <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, opacity: 0.5 }}>
-            <KeyboardModel />
-          </div>
-        </div>
-      </section>
 
       <footer style={{ padding: '40px 4vw', display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', borderTop: '1px solid rgba(255,255,255,0.2)' }}>
         <div>Thank you for watching</div>
