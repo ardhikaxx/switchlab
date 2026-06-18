@@ -209,7 +209,7 @@ a {
   width: 60vw;
   height: 60vh;
   pointer-events: auto; /* Allow interaction */
-  transform: translateX(5vw);
+  transform: translate(5vw, 5vh);
 }
 
 /* Sub-hero info */
