@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useSpring, useTransform, useMotionValue, Variants } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform, useMotionValue, useVelocity, useAnimationFrame, Variants } from "framer-motion";
 import dynamic from 'next/dynamic';
 import { useState, useRef } from "react";
 
@@ -67,6 +67,49 @@ function TiltCard({ title, subtitle, num }: { title: string, subtitle: string, n
         </div>
       </div>
     </motion.div>
+  );
+}
+
+function VelocityScrollText({ children, baseVelocity = 100 }: { children: React.ReactNode, baseVelocity: number }) {
+  const baseX = useMotionValue(0);
+  const { scrollY } = useScroll();
+  const scrollVelocity = useVelocity(scrollY);
+  const smoothVelocity = useSpring(scrollVelocity, {
+    damping: 50,
+    stiffness: 400
+  });
+  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
+    clamp: false
+  });
+
+  const wrap = (min: number, max: number, v: number) => {
+    const rangeSize = max - min;
+    return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+  };
+
+  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+
+  const directionFactor = useRef<number>(1);
+  useAnimationFrame((t, delta) => {
+    let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+    if (velocityFactor.get() < 0) {
+      directionFactor.current = -1;
+    } else if (velocityFactor.get() > 0) {
+      directionFactor.current = 1;
+    }
+    moveBy += directionFactor.current * moveBy * velocityFactor.get();
+    baseX.set(baseX.get() + moveBy);
+  });
+
+  return (
+    <div className="velocity-parallax">
+      <motion.div className="velocity-scroller" style={{ x }}>
+        <span>{children} </span>
+        <span>{children} </span>
+        <span>{children} </span>
+        <span>{children} </span>
+      </motion.div>
+    </div>
   );
 }
 
@@ -423,6 +466,11 @@ export default function Home() {
           ))}
 
         </motion.div>
+      </section>
+
+      <section className="velocity-section">
+        <VelocityScrollText baseVelocity={5}>SWITCH LAB • CUSTOM BUILDS • ZERO COMPROMISE •</VelocityScrollText>
+        <VelocityScrollText baseVelocity={-5}>TACTILE • LINEAR • CLICKY • SILENT •</VelocityScrollText>
       </section>
 
       <footer style={{ padding: '40px 4vw', display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', borderTop: '1px solid rgba(255,255,255,0.2)' }}>

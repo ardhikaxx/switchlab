@@ -670,6 +670,40 @@ a {
   color: #aaa;
 }
 
+/* Velocity Marquee Section */
+.velocity-section {
+  padding: 100px 0;
+  background-color: var(--primary);
+  color: var(--secondary);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.velocity-parallax {
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 0;
+}
+
+.velocity-scroller {
+  display: flex;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+
+.velocity-scroller span {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 10rem);
+  text-transform: uppercase;
+  margin-right: 30px;
+  line-height: 1;
+}
+
 /* Horizontal Scroll Gallery */
 .horizontal-scroll-section {
   position: relative;
