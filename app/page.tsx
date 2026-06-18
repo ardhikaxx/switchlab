@@ -538,10 +538,42 @@ export default function Home() {
         <VelocityScrollText baseVelocity={-5}>TACTILE • LINEAR • CLICKY • SILENT •</VelocityScrollText>
       </section>
 
-      <footer style={{ padding: '40px 4vw', display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', borderTop: '1px solid rgba(255,255,255,0.2)' }}>
-        <div>Thank you for watching</div>
-        <div>Develop by <a href="https://www.instagram.com/ardhxkaa_/" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'var(--primary)', transition: 'color 0.3s' }} onMouseEnter={(e) => e.currentTarget.style.color = '#fff'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--primary)'}>ardhika</a></div>
-        <div>2026</div>
+      <footer className="epic-footer">
+        <motion.div 
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <h1 className="footer-giant-text">READY TO<br/>BUILD?</h1>
+        </motion.div>
+        
+        <div className="footer-grid">
+          <div className="footer-col">
+            <h4>NAVIGATION</h4>
+            <ul>
+              <li><motion.a whileHover={{ x: 10, color: "var(--primary)" }} href="#">Home</motion.a></li>
+              <li><motion.a whileHover={{ x: 10, color: "var(--primary)" }} href="#">Switches</motion.a></li>
+              <li><motion.a whileHover={{ x: 10, color: "var(--primary)" }} href="#">Keycaps</motion.a></li>
+            </ul>
+          </div>
+          <div className="footer-col">
+            <h4>SOCIALS</h4>
+            <ul>
+              <li><motion.a whileHover={{ x: 10, color: "var(--primary)" }} href="https://www.instagram.com/ardhxkaa_/" target="_blank">Instagram</motion.a></li>
+              <li><motion.a whileHover={{ x: 10, color: "var(--primary)" }} href="#">Twitter</motion.a></li>
+              <li><motion.a whileHover={{ x: 10, color: "var(--primary)" }} href="#">GitHub</motion.a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <div>Thank you for watching</div>
+          <div>
+            Develop by <a href="https://www.instagram.com/ardhxkaa_/" target="_blank" rel="noopener noreferrer" className="dev-link">ardhika</a>
+          </div>
+          <div>© 2026 SWITCH LAB</div>
+        </div>
       </footer>
     </>
   );
