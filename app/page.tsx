@@ -273,7 +273,7 @@ export default function Home() {
               key={i} 
               variants={fadeInUp}
               style={{ display: 'inline-block' }}
-              whileHover={{ scale: 1.1, color: 'var(--primary)', rotate: Math.random() * 10 - 5 }}
+              whileHover={{ scale: 1.1, color: 'var(--primary)', rotate: (i % 2 === 0 ? 5 : -5) }}
             >
               {word}
             </motion.span>
@@ -321,12 +321,12 @@ export default function Home() {
               <motion.div
                 key={i}
                 className="bar"
-                animate={{ height: [20, Math.random() * 80 + 20, 20] }}
+                animate={{ height: [20, 20 + ((i * 17) % 80), 20] }}
                 transition={{
-                  duration: Math.random() * 0.5 + 0.5,
+                  duration: 0.5 + ((i * 7) % 5) * 0.1,
                   repeat: Infinity,
                   ease: "easeInOut",
-                  delay: Math.random() * 0.5
+                  delay: ((i * 11) % 5) * 0.1
                 }}
               />
             ))}
