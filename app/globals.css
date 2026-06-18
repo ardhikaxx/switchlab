@@ -209,6 +209,7 @@ a {
   width: 60vw;
   height: 60vh;
   pointer-events: auto; /* Allow interaction */
+  transform: translateX(5vw);
 }
 
 /* Sub-hero info */
