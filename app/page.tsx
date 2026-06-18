@@ -170,6 +170,19 @@ function ExplodedView() {
   );
 }
 
+function RevealWord({ word, index, total, scrollYProgress }: { word: string, index: number, total: number, scrollYProgress: any }) {
+  const start = index / total;
+  const end = start + (1 / total);
+  const opacity = useTransform(scrollYProgress, [start, end], [0.1, 1]);
+  const y = useTransform(scrollYProgress, [start, end], [20, 0]);
+
+  return (
+    <motion.span style={{ opacity, y, display: "inline-block" }}>
+      {word}
+    </motion.span>
+  );
+}
+
 function ScrollRevealText() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -183,19 +196,9 @@ function ScrollRevealText() {
   return (
     <section ref={containerRef} style={{ padding: "150px 5vw", minHeight: "100vh", display: "flex", alignItems: "center", backgroundColor: "var(--secondary)", color: "var(--text-color)" }}>
       <p style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", fontFamily: "var(--font-display)", fontWeight: "bold", lineHeight: 1.2, margin: 0, display: "flex", flexWrap: "wrap", gap: "1.5vw" }}>
-        {words.map((word, i) => {
-          const start = i / words.length;
-          const end = start + (1 / words.length);
-          // Opacity scrubs from 0.1 to 1 based on scroll
-          const opacity = useTransform(scrollYProgress, [start, end], [0.1, 1]);
-          // Words subtly slide up as they are revealed
-          const y = useTransform(scrollYProgress, [start, end], [20, 0]);
-          return (
-            <motion.span key={i} style={{ opacity, y, display: "inline-block" }}>
-              {word}
-            </motion.span>
-          );
-        })}
+        {words.map((word, i) => (
+          <RevealWord key={i} word={word} index={i} total={words.length} scrollYProgress={scrollYProgress} />
+        ))}
       </p>
     </section>
   );
