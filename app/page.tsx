@@ -554,9 +554,8 @@ export default function Home() {
           <div className="footer-col">
             <h4>SOCIALS</h4>
             <ul>
-              <li><motion.a whileHover={{ x: 10, color: "var(--primary)" }} href="https://www.instagram.com/ardhxkaa_/" target="_blank">Instagram</motion.a></li>
-              <li><motion.a whileHover={{ x: 10, color: "var(--primary)" }} href="#">Twitter</motion.a></li>
-              <li><motion.a whileHover={{ x: 10, color: "var(--primary)" }} href="#">GitHub</motion.a></li>
+              <li><motion.a whileHover={{ x: 10, color: "var(--primary)" }} href="https://www.instagram.com/ardhxkaa_/" target="_blank" rel="noopener noreferrer">Instagram</motion.a></li>
+              <li><motion.a whileHover={{ x: 10, color: "var(--primary)" }} href="https://github.com/ardhikaxx/" target="_blank" rel="noopener noreferrer">GitHub</motion.a></li>
             </ul>
           </div>
         </div>
