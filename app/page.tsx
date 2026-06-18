@@ -1,65 +1,133 @@
-import Image from "next/image";
+"use client";
+
+import { motion } from "framer-motion";
+import dynamic from 'next/dynamic';
+
+const KeyboardModel = dynamic(() => import('../components/KeyboardModel'), { ssr: false });
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <nav className="nav">
+        <div className="logo">
+          <div className="logo-circle"></div>
+          <span>SWITCH LAB</span>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+        <div className="nav-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#products">Products</a>
+          <a href="#offers">Offers</a>
+        </div>
+        <div className="nav-icons">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </nav>
+
+      <section className="hero">
+        <div className="hero-top-info">
+          <div className="barcode"></div>
+          <div className="hero-subtitle">Delivering Analog Precision</div>
+        </div>
+
+        <div className="hero-title-container">
+          <h1 className="hero-title">SWITCH</h1>
+          <div className="hero-title line-2">
+            <span>LAB</span>
+            <span>- 3</span>
+          </div>
+          <div className="hero-floating-3d">
+            <KeyboardModel />
+          </div>
+        </div>
+
+        <div className="hero-bottom-info">
+          <a href="#" className="btn-pill">
+            Explore Catalogue
+            <span className="btn-icon">↗</span>
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <div className="hero-small-text">
+            Bring your analog embrace the journey today
+          </div>
+        </div>
+      </section>
+
+      <section className="section-two">
+        <div className="section-header">
+          <h2 className="section-title">Mechanics Meets<br/>Precision</h2>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '15px' }}>
+            <div className="hero-small-text" style={{ textAlign: 'left', maxWidth: '150px' }}>
+              Bring your typing embrace the journey today
+            </div>
+            <div className="btn-icon" style={{ border: '1px solid #fff', background: 'transparent', color: '#fff', width: '30px', height: '30px' }}>↗</div>
+          </div>
+        </div>
+
+        <div className="bento-grid">
+          {/* Big Box (Cyan) */}
+          <motion.div 
+            className="bento-box bg-primary box-span-4"
+            whileHover={{ y: -5 }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
-            Documentation
+            <div className="icon-top-right">↗</div>
+            <div style={{ height: '100px' }}></div> {/* Spacer for where an image would be */}
+            <div>
+              <p style={{ marginBottom: '5px', fontWeight: 'bold' }}>Exploring innovation through the lens</p>
+              <h3>Switches</h3>
+            </div>
+          </motion.div>
+
+          <div className="bento-box bg-outline box-span-4" style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: '20px', padding: 0, border: 'none' }}>
+            {/* Top right split box */}
+            <motion.div className="bento-box bg-outline" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '20px' }} whileHover={{ y: -5 }}>
+              <h3 style={{ fontSize: '1.2rem' }}>KEYCAPS</h3>
+            </motion.div>
+            <motion.div className="bento-box bg-outline" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '20px' }} whileHover={{ y: -5 }}>
+              <div className="bento-pills" style={{ margin: 0 }}>
+                <span className="pill">PBT</span>
+                <span className="pill">ABS</span>
+              </div>
+              <p style={{ fontSize: '0.7rem' }}>Delighting you always</p>
+            </motion.div>
+          </div>
+
+          <motion.div className="bento-box bg-outline box-span-4" whileHover={{ y: -5 }}>
+            <div>
+              <h3 style={{ fontSize: '1.8rem' }}>Discover<br/>Your<br/>Effective<br/>PCB Pro</h3>
+            </div>
+            <a href="#" className="btn-pill" style={{ width: 'max-content', marginTop: '20px', background: 'var(--text-color)', color: 'var(--secondary)' }}>
+              Order Now <span className="btn-icon" style={{ background: 'var(--secondary)', color: 'var(--text-color)' }}>↗</span>
+            </a>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="section-two" style={{ paddingTop: '20px' }}>
+        <div className="section-header" style={{ marginBottom: '20px' }}>
+          <h2 className="section-title" style={{ fontSize: '3rem' }}>The Anatomy</h2>
+          <div className="hero-small-text" style={{ textAlign: 'left', maxWidth: '300px' }}>
+            Our anatomy showcases an exquisite range of components that blend innovation, precision, and style. From sleek aesthetics to vintage-inspired pieces.
+          </div>
+          <a href="#" className="btn-pill" style={{ background: 'transparent', border: '2px solid var(--text-color)', color: 'var(--text-color)' }}>
+            View All <span className="btn-icon" style={{ background: 'var(--text-color)', color: 'var(--secondary)' }}>↗</span>
           </a>
         </div>
-      </main>
-    </div>
+
+        <div className="gallery-box">
+          <h2>STABILIZERS</h2>
+          {/* We can re-use the 3D model here or just have a bold graphic */}
+          <div style={{ position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, opacity: 0.5 }}>
+            <KeyboardModel />
+          </div>
+        </div>
+      </section>
+
+      <footer style={{ padding: '40px 4vw', display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', borderTop: '1px solid rgba(255,255,255,0.2)' }}>
+        <div>Thank you for watching</div>
+        <div>Design Inspired By Reference</div>
+        <div>2026</div>
+      </footer>
+    </>
   );
 }
