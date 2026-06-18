@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useSpring, Variants } from "framer-motion";
 import dynamic from 'next/dynamic';
+import { useState } from "react";
 
 const KeyboardModel = dynamic(() => import('../components/KeyboardModel'), { ssr: false });
 
@@ -17,6 +18,34 @@ const staggerContainer: Variants = {
     transition: { staggerChildren: 0.15 }
   }
 };
+
+function FaqItem({ question, answer, index }: { question: string, answer: string, index: number }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <motion.div 
+      className="faq-item" 
+      onClick={() => setIsOpen(!isOpen)}
+      initial={{ opacity: 0, x: -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+    >
+      <div className="faq-question">
+        <span>{question}</span>
+        <motion.span animate={{ rotate: isOpen ? 45 : 0 }}>+</motion.span>
+      </div>
+      <motion.div 
+        className="faq-answer"
+        initial={false}
+        animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <p style={{ paddingTop: '10px' }}>{answer}</p>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
@@ -246,6 +275,53 @@ export default function Home() {
             <div className="stat-label">{stat.label}</div>
           </motion.div>
         ))}
+      </section>
+
+      <section className="soundwave-section">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+        >
+          <motion.div className="soundwave-title" variants={fadeInUp}>Hear the Thock</motion.div>
+          <div className="bars-container">
+            {Array.from({ length: 25 }).map((_, i) => (
+              <motion.div
+                key={i}
+                className="bar"
+                animate={{ height: [20, Math.random() * 80 + 20, 20] }}
+                transition={{
+                  duration: Math.random() * 0.5 + 0.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: Math.random() * 0.5
+                }}
+              />
+            ))}
+          </div>
+          <motion.div variants={fadeInUp} style={{ marginTop: '20px', fontWeight: 'bold' }}>Experience the ultimate sound profile.</motion.div>
+        </motion.div>
+      </section>
+
+      <section className="faq-section">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+        >
+          <motion.h2 className="faq-title" variants={fadeInUp}>Knowledge Base</motion.h2>
+          
+          {[
+            { q: "What makes a mechanical keyboard better?", a: "Unlike membrane keyboards, mechanical keyboards use individual physical switches for every key, providing tactile feedback, precision, and a satisfying sound profile known as the 'thock'." },
+            { q: "What is the difference between PBT and ABS?", a: "PBT keycaps are highly durable, textured, and resistant to shine over time. ABS keycaps are smoother and often used for double-shot transparent legends but can develop a shine with heavy use." },
+            { q: "Do you ship internationally?", a: "Yes, we ship our premium custom keyboards and components to enthusiasts all around the globe with tracked, secure shipping." }
+          ].map((faq, i) => (
+            <FaqItem key={i} question={faq.q} answer={faq.a} index={i} />
+          ))}
+
+        </motion.div>
       </section>
 
       <footer style={{ padding: '40px 4vw', display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', fontWeight: 'bold', textTransform: 'uppercase', borderTop: '1px solid rgba(255,255,255,0.2)' }}>

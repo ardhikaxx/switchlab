@@ -489,3 +489,74 @@ a {
   gap: 15px;
   perspective: 1000px;
 }
+/* Soundwave Section */
+.soundwave-section {
+  padding: 100px 4vw;
+  background-color: var(--primary);
+  color: var(--secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 40vh;
+  text-align: center;
+}
+
+.soundwave-title {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.bars-container {
+  display: flex;
+  gap: 8px;
+  height: 100px;
+  align-items: center;
+  justify-content: center;
+}
+
+.bar {
+  width: 15px;
+  background-color: var(--secondary);
+  border-radius: 20px;
+}
+
+/* FAQ Section */
+.faq-section {
+  padding: 100px 4vw;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.faq-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 4rem);
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 20px;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px 0;
+  cursor: pointer;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.faq-answer {
+  overflow: hidden;
+  color: #ccc;
+  line-height: 1.6;
+  margin-top: 10px;
+}
