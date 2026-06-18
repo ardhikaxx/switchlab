@@ -170,6 +170,37 @@ function ExplodedView() {
   );
 }
 
+function ScrollRevealText() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 80%", "end 50%"]
+  });
+
+  const text = "EVERY SWITCH. EVERY KEYCAP. EVERY MILLIMETER OF MACHINED ALUMINUM IS DESIGNED TO DELIVER THE ULTIMATE TACTILE EXPERIENCE. WE DON'T JUST BUILD KEYBOARDS. WE CRAFT INSTRUMENTS FOR CREATORS.";
+  const words = text.split(" ");
+
+  return (
+    <section ref={containerRef} style={{ padding: "150px 5vw", minHeight: "100vh", display: "flex", alignItems: "center", backgroundColor: "var(--secondary)", color: "var(--text-color)" }}>
+      <p style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)", fontFamily: "var(--font-display)", fontWeight: "bold", lineHeight: 1.2, margin: 0, display: "flex", flexWrap: "wrap", gap: "1.5vw" }}>
+        {words.map((word, i) => {
+          const start = i / words.length;
+          const end = start + (1 / words.length);
+          // Opacity scrubs from 0.1 to 1 based on scroll
+          const opacity = useTransform(scrollYProgress, [start, end], [0.1, 1]);
+          // Words subtly slide up as they are revealed
+          const y = useTransform(scrollYProgress, [start, end], [20, 0]);
+          return (
+            <motion.span key={i} style={{ opacity, y, display: "inline-block" }}>
+              {word}
+            </motion.span>
+          );
+        })}
+      </p>
+    </section>
+  );
+}
+
 function FaqItem({ question, answer, index }: { question: string, answer: string, index: number }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -432,26 +463,7 @@ export default function Home() {
         </motion.div>
       </section>
 
-      <section className="philosophy-section">
-        <motion.div 
-          className="philosophy-text"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          variants={staggerContainer}
-        >
-          {["WE", "BELIEVE", "IN", "THE", "TACTILE", "SOUL", "OF", "MACHINES."].map((word, i) => (
-            <motion.span 
-              key={i} 
-              variants={fadeInUp}
-              style={{ display: 'inline-block' }}
-              whileHover={{ scale: 1.1, color: 'var(--primary)', rotate: (i % 2 === 0 ? 5 : -5) }}
-            >
-              {word}
-            </motion.span>
-          ))}
-        </motion.div>
-      </section>
+      <ScrollRevealText />
 
       <section className="stats-container">
         {[
