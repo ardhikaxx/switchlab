@@ -117,60 +117,54 @@ function ExplodedView() {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({ target: targetRef, offset: ["start start", "end end"] });
 
-  // Parts scattering
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -300]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
-  const x3 = useTransform(scrollYProgress, [0, 1], [0, -250]);
-  const x4 = useTransform(scrollYProgress, [0, 1], [0, 250]);
-  const y5 = useTransform(scrollYProgress, [0, 1], [0, 250]);
-
-  const rot1 = useTransform(scrollYProgress, [0, 1], [0, -10]);
-  const rot2 = useTransform(scrollYProgress, [0, 1], [0, 5]);
-  const rot3 = useTransform(scrollYProgress, [0, 1], [0, -15]);
-  const rot4 = useTransform(scrollYProgress, [0, 1], [0, 15]);
-  const rot5 = useTransform(scrollYProgress, [0, 1], [0, 10]);
+  // Isometric Z-axis lifting on scroll
+  const z1 = useTransform(scrollYProgress, [0, 1], [0, 800]);
+  const z2 = useTransform(scrollYProgress, [0, 1], [0, 600]);
+  const z3 = useTransform(scrollYProgress, [0, 1], [0, 400]);
+  const z4 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const z5 = useTransform(scrollYProgress, [0, 1], [0, 0]);
 
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
   return (
     <section ref={targetRef} style={{ height: "300vh", position: "relative", backgroundColor: "var(--background)", zIndex: 10 }}>
-      <div style={{ position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
+      <div style={{ position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", perspective: "2000px" }}>
         
         <motion.div style={{ position: "absolute", opacity, zIndex: 0 }}>
-           <h2 style={{ fontSize: "clamp(3rem, 8vw, 6rem)", fontFamily: "var(--font-display)", color: "rgba(255,255,255,0.05)", textAlign: "center" }}>
-             DECONSTRUCTED<br/>BRILLIANCE
+           <h2 style={{ fontSize: "clamp(3rem, 8vw, 6rem)", fontFamily: "var(--font-display)", color: "rgba(255,255,255,0.02)", textAlign: "center", transform: "translateY(-30vh)" }}>
+             ARCHITECTURAL<br/>LAYERS
            </h2>
         </motion.div>
 
-        {/* Center Base */}
-        <div style={{ width: "200px", height: "60px", background: "var(--primary)", borderRadius: "10px", position: "absolute", zIndex: 5, boxShadow: "0 0 40px rgba(68,179,194,0.3)" }}>
-           <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--secondary)", fontWeight: "bold" }}>CORE</div>
+        {/* Isometric Container */}
+        <div style={{ position: "relative", width: "250px", height: "350px", transformStyle: "preserve-3d", transform: "rotateX(60deg) rotateZ(-45deg)" }}>
+          
+          {/* Layer 1: Keycaps */}
+          <motion.div style={{ z: z1 }} className="iso-layer layer-keycaps">
+            <span>KEYCAPS</span>
+          </motion.div>
+
+          {/* Layer 2: Switches */}
+          <motion.div style={{ z: z2 }} className="iso-layer layer-switches">
+            <span>SWITCHES</span>
+          </motion.div>
+
+          {/* Layer 3: PCB/Plate */}
+          <motion.div style={{ z: z3 }} className="iso-layer layer-pcb">
+            <span>HOT-SWAP PCB</span>
+          </motion.div>
+
+          {/* Layer 4: Gasket Base */}
+          <motion.div style={{ z: z4 }} className="iso-layer layer-base">
+            <span>GASKET BASE</span>
+          </motion.div>
+
+          {/* Layer 5: Aluminum Case */}
+          <motion.div style={{ z: z5 }} className="iso-layer layer-case">
+            <span>ALUMINUM CHASSIS</span>
+          </motion.div>
+          
         </div>
-
-        {/* Part 1 */}
-        <motion.div style={{ y: y1, rotate: rot1, position: "absolute", zIndex: 4 }} className="exploded-part part-top">
-          TOP FRAME
-        </motion.div>
-
-        {/* Part 2 */}
-        <motion.div style={{ y: y2, rotate: rot2, position: "absolute", zIndex: 3 }} className="exploded-part part-pcb">
-          HOT-SWAP PCB
-        </motion.div>
-
-        {/* Part 3 */}
-        <motion.div style={{ x: x3, rotate: rot3, position: "absolute", zIndex: 6 }} className="exploded-part part-side">
-          GASKETS
-        </motion.div>
-
-        {/* Part 4 */}
-        <motion.div style={{ x: x4, rotate: rot4, position: "absolute", zIndex: 6 }} className="exploded-part part-side">
-          SWITCHES
-        </motion.div>
-
-        {/* Part 5 */}
-        <motion.div style={{ y: y5, rotate: rot5, position: "absolute", zIndex: 2 }} className="exploded-part part-bottom">
-          ALUMINUM BASE
-        </motion.div>
       </div>
     </section>
   );

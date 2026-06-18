@@ -704,29 +704,31 @@ a {
   line-height: 1;
 }
 
-/* Exploded View */
-.exploded-part {
-  width: 250px;
-  height: 80px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+/* Isometric 3D Layers */
+.iso-layer {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   letter-spacing: 2px;
   color: var(--text-color);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: -10px 10px 30px rgba(0,0,0,0.5);
+  transition: background 0.3s;
 }
 
-.part-top { border-top: 2px solid var(--primary); }
-.part-bottom { border-bottom: 2px solid var(--primary); }
-.part-pcb { background: rgba(68, 179, 194, 0.1); border-color: var(--primary); }
-.part-side { width: 120px; height: 120px; border-radius: 50%; }
+.layer-keycaps { background: rgba(255,255,255,0.1); border: 2px solid #fff; }
+.layer-switches { background: rgba(68,179,194,0.1); border: 2px solid var(--primary); }
+.layer-pcb { background: rgba(45,44,94,0.3); border: 2px dashed #888; }
+.layer-base { background: rgba(0,0,0,0.5); border: 1px solid #444; }
+.layer-case { background: linear-gradient(135deg, #333, #111); border: 1px solid #555; }
 
 /* Horizontal Scroll Gallery */
 .horizontal-scroll-section {
