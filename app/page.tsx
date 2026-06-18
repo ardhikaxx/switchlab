@@ -80,14 +80,16 @@ export default function Home() {
             <span>LAB</span>
             <span>- 3</span>
           </motion.div>
-          <motion.div 
-            className="hero-floating-3d"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <KeyboardModel />
-          </motion.div>
+          <div className="hero-floating-3d">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.5, ease: "easeOut" }}
+              style={{ width: '100%', height: '100%' }}
+            >
+              <KeyboardModel />
+            </motion.div>
+          </div>
         </motion.div>
 
         <motion.div className="hero-bottom-info" initial="hidden" animate="visible" variants={fadeInUp}>
