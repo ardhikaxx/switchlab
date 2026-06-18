@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useScroll, useSpring, Variants } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform, Variants } from "framer-motion";
 import dynamic from 'next/dynamic';
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const KeyboardModel = dynamic(() => import('../components/KeyboardModel'), { ssr: false });
 
@@ -44,6 +44,35 @@ function FaqItem({ question, answer, index }: { question: string, answer: string
         <p style={{ paddingTop: '10px' }}>{answer}</p>
       </motion.div>
     </motion.div>
+  );
+}
+
+function HorizontalScrollGallery() {
+  const targetRef = useRef<HTMLDivElement | null>(null);
+  const { scrollYProgress } = useScroll({ target: targetRef });
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-65%"]);
+
+  const cards = [
+    { title: "AESTHETICS", bg: "01", desc: "Design that speaks volumes." },
+    { title: "PERFORMANCE", bg: "02", desc: "Zero latency. Pure speed." },
+    { title: "ERGONOMICS", bg: "03", desc: "Comfort for the long hours." },
+    { title: "CUSTOM", bg: "04", desc: "Make it truly yours." }
+  ];
+
+  return (
+    <section ref={targetRef} className="horizontal-scroll-section">
+      <div className="horizontal-sticky-container">
+        <motion.div style={{ x }} className="horizontal-track">
+          {cards.map((card, i) => (
+            <div key={i} className="horizontal-card">
+              <div className="horizontal-card-bg">{card.bg}</div>
+              <div className="horizontal-card-title">{card.title}</div>
+              <p style={{ zIndex: 2, fontSize: '1.2rem', marginTop: '10px' }}>{card.desc}</p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
   );
 }
 
@@ -228,6 +257,8 @@ export default function Home() {
           </motion.div>
         </motion.div>
       </section>
+
+      <HorizontalScrollGallery />
 
       <section className="philosophy-section">
         <motion.div 
