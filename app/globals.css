@@ -704,6 +704,30 @@ a {
   line-height: 1;
 }
 
+/* Exploded View */
+.exploded-part {
+  width: 250px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  color: var(--text-color);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.part-top { border-top: 2px solid var(--primary); }
+.part-bottom { border-bottom: 2px solid var(--primary); }
+.part-pcb { background: rgba(68, 179, 194, 0.1); border-color: var(--primary); }
+.part-side { width: 120px; height: 120px; border-radius: 50%; }
+
 /* Horizontal Scroll Gallery */
 .horizontal-scroll-section {
   position: relative;
