@@ -164,15 +164,28 @@ export default function Home() {
           </motion.div>
 
           <motion.div variants={fadeInUp} className="bento-box bg-outline box-span-4" style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gap: '20px', padding: 0, border: 'none' }}>
-            <motion.div className="bento-box bg-outline" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '20px' }} whileHover={{ scale: 1.02 }}>
-              <h3 style={{ fontSize: '1.2rem' }}>KEYCAPS</h3>
+            <motion.div 
+              className="bento-box bg-outline" 
+              style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px', overflow: 'hidden', position: 'relative' }} 
+              whileHover={{ backgroundColor: "var(--primary)", color: "var(--secondary)" }}
+              transition={{ duration: 0.3 }}
+            >
+              <h3 style={{ fontSize: '1.5rem', letterSpacing: '2px' }}>KEYCAPS</h3>
+              <motion.div 
+                initial={{ x: -100, opacity: 0 }}
+                whileHover={{ x: 0, opacity: 1 }}
+                style={{ position: 'absolute', bottom: '10px', right: '20px', fontWeight: 'bold' }}
+              >
+                Explore ↗
+              </motion.div>
             </motion.div>
-            <motion.div className="bento-box bg-outline" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: '20px' }} whileHover={{ scale: 1.02 }}>
-              <div className="bento-pills" style={{ margin: 0 }}>
-                <span className="pill">PBT</span>
-                <span className="pill">ABS</span>
+            
+            <motion.div className="bento-box bg-outline" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '20px', gap: '15px' }} whileHover={{ scale: 1.02 }}>
+              <div className="keycaps-container">
+                <div className="mech-key">PBT</div>
+                <div className="mech-key">ABS</div>
               </div>
-              <p style={{ fontSize: '0.7rem' }}>Delighting you always</p>
+              <p style={{ fontSize: '0.8rem', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>Delighting you always</p>
             </motion.div>
           </motion.div>
 
