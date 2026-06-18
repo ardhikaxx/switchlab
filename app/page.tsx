@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useSpring, useTransform, Variants } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform, useMotionValue, Variants } from "framer-motion";
 import dynamic from 'next/dynamic';
 import { useState, useRef } from "react";
 
@@ -18,6 +18,48 @@ const staggerContainer: Variants = {
     transition: { staggerChildren: 0.15 }
   }
 };
+
+function TiltCard({ title, subtitle }: { title: string, subtitle: string }) {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+  
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ rotateY, rotateX, transformStyle: "preserve-3d" }}
+      className="tilt-card"
+    >
+      <div style={{ transform: "translateZ(50px)" }} className="tilt-content">
+        <h3>{title}</h3>
+        <p>{subtitle}</p>
+      </div>
+    </motion.div>
+  );
+}
 
 function FaqItem({ question, answer, index }: { question: string, answer: string, index: number }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -259,6 +301,25 @@ export default function Home() {
       </section>
 
       <HorizontalScrollGallery />
+
+      <section className="tilt-section">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={staggerContainer}
+          style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+        >
+          <motion.h2 variants={fadeInUp} style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 5vw, 4rem)', textTransform: 'uppercase', marginBottom: '20px' }}>
+            Premium Components
+          </motion.h2>
+          <div className="tilt-grid">
+            <TiltCard title="Aircraft Grade" subtitle="CNC Machined Aluminum Case" />
+            <TiltCard title="Hot-Swappable" subtitle="Change switches on the fly" />
+            <TiltCard title="Gasket Mount" subtitle="Flex and dampening for the perfect typing feel" />
+          </div>
+        </motion.div>
+      </section>
 
       <section className="philosophy-section">
         <motion.div 
