@@ -25,7 +25,7 @@ export default function KeyboardModel() {
       <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 5, 10], fov: 45 }}>
         <React.Suspense fallback={<Loader />}>
           <Stage environment="city" intensity={0.5}>
-            <Center alignTop position={[0, -1, 0]}>
+            <Center position={[0, -1, 0]}>
               <Model />
             </Center>
           </Stage>
