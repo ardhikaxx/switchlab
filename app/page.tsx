@@ -117,12 +117,12 @@ function ExplodedView() {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({ target: targetRef, offset: ["start start", "end end"] });
 
-  // Isometric Z-axis lifting on scroll
-  const z1 = useTransform(scrollYProgress, [0, 1], [0, 800]);
-  const z2 = useTransform(scrollYProgress, [0, 1], [0, 600]);
-  const z3 = useTransform(scrollYProgress, [0, 1], [0, 400]);
-  const z4 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const z5 = useTransform(scrollYProgress, [0, 1], [0, 0]);
+  // Isometric Z-axis lifting on scroll, expanding perfectly from the center
+  const z1 = useTransform(scrollYProgress, [0, 1], [0, 400]);
+  const z2 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const z3 = useTransform(scrollYProgress, [0, 1], [0, 0]);
+  const z4 = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const z5 = useTransform(scrollYProgress, [0, 1], [0, -400]);
 
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
 
@@ -130,8 +130,8 @@ function ExplodedView() {
     <section ref={targetRef} style={{ height: "300vh", position: "relative", backgroundColor: "var(--background)", zIndex: 10 }}>
       <div style={{ position: "sticky", top: 0, height: "100vh", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", perspective: "2000px" }}>
         
-        <motion.div style={{ position: "absolute", opacity, zIndex: 0 }}>
-           <h2 style={{ fontSize: "clamp(3rem, 8vw, 6rem)", fontFamily: "var(--font-display)", color: "rgba(255,255,255,0.02)", textAlign: "center", transform: "translateY(-30vh)" }}>
+        <motion.div style={{ position: "absolute", opacity, zIndex: 0, display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}>
+           <h2 style={{ fontSize: "clamp(3rem, 8vw, 6rem)", fontFamily: "var(--font-display)", color: "rgba(255,255,255,0.03)", textAlign: "center", margin: 0 }}>
              ARCHITECTURAL<br/>LAYERS
            </h2>
         </motion.div>
