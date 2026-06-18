@@ -21,21 +21,6 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
-  cursor: none; /* Hide default cursor to use custom cursor */
-}
-
-/* Custom Animated Cursor */
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: var(--primary);
-  mix-blend-mode: difference;
-  pointer-events: none;
-  z-index: 9999;
 }
 
 /* Scroll Progress Bar */
