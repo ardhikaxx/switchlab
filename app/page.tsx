@@ -74,13 +74,16 @@ export default function Home() {
           <div className="hero-subtitle">Delivering Analog Precision</div>
         </motion.div>
 
-        <motion.div className="hero-title-container" initial="hidden" animate="visible" variants={staggerContainer}>
-          <motion.h1 className="hero-title" variants={fadeInUp}>SWITCH</motion.h1>
-          <motion.div className="hero-title line-2" variants={fadeInUp}>
-            <span>LAB</span>
-            <span>- 3</span>
+        <div className="hero-title-container">
+          <motion.div className="hero-text-layer" initial="hidden" animate="visible" variants={staggerContainer}>
+            <motion.h1 className="hero-title" variants={fadeInUp}>SWITCH</motion.h1>
+            <motion.div className="hero-title line-2" variants={fadeInUp}>
+              <span>LAB</span>
+              <span>- 3</span>
+            </motion.div>
           </motion.div>
-          <div className="hero-floating-3d">
+          
+          <div className="hero-3d-layer">
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -90,7 +93,7 @@ export default function Home() {
               <KeyboardModel />
             </motion.div>
           </div>
-        </motion.div>
+        </div>
 
         <motion.div className="hero-bottom-info" initial="hidden" animate="visible" variants={fadeInUp}>
           <a href="#" className="btn-pill">

@@ -165,10 +165,23 @@ a {
 }
 
 .hero-title-container {
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  place-items: center;
   width: 100%;
   position: relative;
+}
+
+.hero-text-layer {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
   z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-title {
@@ -180,8 +193,6 @@ a {
   color: var(--text-color);
   margin: 0;
   white-space: nowrap;
-  position: relative;
-  z-index: 1;
 }
 
 .hero-title .line-2 {
@@ -189,18 +200,14 @@ a {
   align-items: center;
   justify-content: center;
   gap: 2vw;
-  position: relative;
-  z-index: 1;
 }
 
-.hero-floating-3d {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -40%);
+.hero-3d-layer {
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+  z-index: 99;
   width: 60vw;
   height: 60vh;
-  z-index: 99;
   pointer-events: auto; /* Allow interaction */
 }
 
