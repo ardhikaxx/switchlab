@@ -19,7 +19,7 @@ const staggerContainer: Variants = {
   }
 };
 
-function TiltCard({ title, subtitle }: { title: string, subtitle: string }) {
+function TiltCard({ title, subtitle, num }: { title: string, subtitle: string, num: string }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   
@@ -53,9 +53,18 @@ function TiltCard({ title, subtitle }: { title: string, subtitle: string }) {
       style={{ rotateY, rotateX, transformStyle: "preserve-3d" }}
       className="tilt-card"
     >
-      <div style={{ transform: "translateZ(50px)" }} className="tilt-content">
-        <h3>{title}</h3>
-        <p>{subtitle}</p>
+      <div className="tilt-bg-number" style={{ transform: "translateZ(20px)" }}>{num}</div>
+      <div className="tilt-glow"></div>
+      
+      <div style={{ transform: "translateZ(60px)" }} className="tilt-content">
+        <div className="tilt-header">
+          <span className="tilt-badge">Feature {num}</span>
+          <div className="tilt-icon">✦</div>
+        </div>
+        <div className="tilt-footer">
+          <h3>{title}</h3>
+          <p>{subtitle}</p>
+        </div>
       </div>
     </motion.div>
   );
@@ -314,9 +323,9 @@ export default function Home() {
             Premium Components
           </motion.h2>
           <div className="tilt-grid">
-            <TiltCard title="Aircraft Grade" subtitle="CNC Machined Aluminum Case" />
-            <TiltCard title="Hot-Swappable" subtitle="Change switches on the fly" />
-            <TiltCard title="Gasket Mount" subtitle="Flex and dampening for the perfect typing feel" />
+            <TiltCard num="01" title="Aircraft Grade" subtitle="CNC Machined Aluminum Case" />
+            <TiltCard num="02" title="Hot-Swappable" subtitle="Change switches on the fly" />
+            <TiltCard num="03" title="Gasket Mount" subtitle="Flex and dampening for the perfect typing feel" />
           </div>
         </motion.div>
       </section>

@@ -581,36 +581,93 @@ a {
 
 .tilt-card {
   height: 400px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 20px;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  flex-direction: column;
+  padding: 30px;
+  box-shadow: 0 30px 50px -10px rgba(0,0,0,0.4);
   cursor: pointer;
   position: relative;
+  overflow: hidden;
 }
 
-.tilt-content {
-  text-align: center;
-  padding: 20px;
-  color: var(--text-color);
+.tilt-glow {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(circle at center, var(--primary) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.tilt-card:hover .tilt-glow { opacity: 0.2; }
+
+.tilt-bg-number {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  font-family: var(--font-display);
+  font-size: 15rem;
+  color: rgba(255,255,255,0.02);
+  line-height: 1;
   pointer-events: none;
 }
 
-.tilt-content h3 {
+.tilt-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  text-align: left;
+  color: var(--text-color);
+  pointer-events: none;
+  width: 100%;
+}
+
+.tilt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.tilt-badge {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.tilt-icon {
+  font-size: 1.5rem;
+  color: var(--primary);
+}
+
+.tilt-footer {
+  width: 100%;
+}
+
+.tilt-footer h3 {
   font-family: var(--font-display);
   font-size: 2rem;
   margin-bottom: 10px;
   text-transform: uppercase;
+  background: linear-gradient(to right, #fff, #888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
 }
 
-.tilt-content p {
-  font-size: 1rem;
-  opacity: 0.8;
+.tilt-footer p {
+  font-size: 0.9rem;
+  color: #aaa;
 }
 
 /* Horizontal Scroll Gallery */
