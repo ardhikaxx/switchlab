@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useSpring, useTransform, useMotionValue, useVelocity, useAnimationFrame, Variants } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform, useMotionValue, useVelocity, useAnimationFrame, Variants, MotionValue } from "framer-motion";
 import dynamic from 'next/dynamic';
 import { useState, useRef } from "react";
 
@@ -170,7 +170,7 @@ function ExplodedView() {
   );
 }
 
-function RevealWord({ word, index, total, scrollYProgress }: { word: string, index: number, total: number, scrollYProgress: any }) {
+function RevealWord({ word, index, total, scrollYProgress }: { word: string, index: number, total: number, scrollYProgress: MotionValue<number> }) {
   const start = index / total;
   const end = start + (1 / total);
   const opacity = useTransform(scrollYProgress, [start, end], [0.1, 1]);
